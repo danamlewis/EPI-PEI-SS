@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPI/PEI Symptom Score (EPI/PEI-SS)</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="giSurveyForm">
+        <h1>Exocrine Pancreatic Insufficiency Symptom Score (EPI/PEI-SS)</h1>
+
+<div class="intro-text">
+  <p>This tool is anonymous and voluntary. No identifying information is collected. You can use it to reflect on your own symptom experience. At the end, you can generate the EPI/PEI-SS Score and will be provided with some context on how this score could be used by you and how it may help you and your doctor. If you have any questions, you can contact <a href="mailto:Dana+GISymptomSurvey@OpenAPS.org?subject=EPI/PEI-SS%20WebTool">Dana+GISymptomSurvey@OpenAPS.org</a>.</p>
+</div>
+
+        <!-- Consent -->
+<label><input type="radio" name="consent" value="Yes" required checked>Yes, I consent to using this tool. I understand that my use of this tool is voluntary and this tool is currently designed for informational purposees and not medical advice. </label>
+
+        <!-- Demographics -->
+        <h2>Demographics</h2>
+        <label for="geo">What part of the world do you live in? *</label>
+        <select id="geo" name="geo" required>
+            <option value="">Select...</option>
+            <option value="NA">North America</option>
+            <option value="SA">South America</option>
+            <option value="EU">Europe (including UK)</option>
+            <option value="Asia">Asia</option>
+            <option value="AUS">Australia</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="age">How old are you? *</label>
+        <select id="age" name="age" required>
+            <option value="">Select...</option>
+            <option value="<18"><18</option>
+            <option value="18-29">18-29</option>
+            <option value="30-39">30-39</option>
+            <option value="40-49">40-49</option>
+            <option value="50-59">50-59</option>
+            <option value="60-69">60-69</option>
+            <option value="70-79">70-79</option>
+            <option value="80 or older">80 or older</option>
+        </select>
+
+        <label for="gender">What is your gender identity? *</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select...</option>
+            <option value="F">Female</option>
+            <option value="M">Male</option>
+            <option value="NB">Non-binary</option>
+            <option value="PNS">Prefer not to say</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- Health Conditions -->
+	<h2>Health Conditions</h2>
+	<p>Do you have any of the following conditions now or in the past? (Select all that apply)</p>
+
+	<div class="form-section conditions">
+    <label for="chronicPancreatitis"><input type="checkbox" id="chronicPancreatitis" name="condition[]" value="CP"> Chronic pancreatitis</label>
+    <label for="acutePancreatitis"><input type="checkbox" id="acutePancreatitis" name="condition[]" value="AP"> Acute pancreatitis</label>
+    <label for="pancreaticCancer"><input type="checkbox" id="pancreaticCancer" name="condition[]" value="PC"> Pancreatic cancer</label>
+    <label for="pancreaticSurgery"><input type="checkbox" id="pancreaticSurgery" name="condition[]" value="PS"> Pancreatic surgery</label>
+    <label for="diabetes1"><input type="checkbox" id="diabetes1" name="condition[]" value="T1D"> Type 1 diabetes</label>
+    <label for="diabetes2"><input type="checkbox" id="diabetes2" name="condition[]" value="T2D"> Type 2 diabetes</label>
+    <label for="celiacDisease"><input type="checkbox" id="celiacDisease" name="condition[]" value="CD"> Celiac disease</label>
+    <label for="cysticFibrosis"><input type="checkbox" id="cysticFibrosis" name="condition[]" value="CF"> Cystic Fibrosis</label>
+    <label for="exocrinePancreaticInsufficiency"><input type="checkbox" id="exocrinePancreaticInsufficiency" name="condition[]" value="EPI"> Exocrine Pancreatic Insufficiency (EPI or PEI)</label>
+    <label for="crohns"><input type="checkbox" id="crohns" name="condition[]" value="Crohn"> Crohn's</label>
+    <label for="gastroparesis"><input type="checkbox" id="gastroparesis" name="condition[]" value="GP"> Gastroparesis (delayed gastric emptying)</label>
+    <label for="ibs"><input type="checkbox" id="ibs" name="condition[]" value="IBS"> IBS</label>
+    <label for="gerd"><input type="checkbox" id="gerd" name="condition[]" value="GERD"> GERD</label>
+    <label for="lactoseIntolerance"><input type="checkbox" id="lactoseIntolerance" name="condition[]" value="LI"> Lactose intolerance</label>
+    <label for="otherFoodIntolerances"><input type="checkbox" id="otherFoodIntolerances" name="condition[]" value="Other food intolerances"> Other food intolerances</label>
+    <!-- The text input for 'Other conditions' should have a different name -->
+    <input type="text" id="otherConditions" name="otherCondition" placeholder="Other conditions">
+</div>
+
+
+    <h3>Have you been diagnosed with exocrine pancreatic insufficiency (also known as pancreatic insufficiency, EPI, or PEI)? *</h3>
+	<label><input type="radio" name="epiDiagnosis" value="Yes" required> Yes, I have been diagnosed with EPI.</label>
+    <label><input type="radio" name="epiDiagnosis" value="No" required> No, I do not have EPI.</label>
+
+
+<!-- EPI Information Section (Displayed conditionally) -->
+<div id="epiInfo" style="display:none;">
+    <h2>Exocrine Pancreatic Insufficiency (EPI)</h2>
+
+    <label for="epiDuration">How long have you had EPI? *</label>
+    <select id="epiDuration" name="epiDuration" required>
+	<option value="Select">Select...</option>
+        <option value="0-6m">0-6 months</option>
+        <option value="6m-1y">6 months - 1 year</option>
+        <option value="1-2y">1 - 2 years</option>
+        <option value="3-5y">3 - 5 years</option>
+        <option value="5+y">More than 5 years</option>
+    </select><br>
+
+    <label for="fecalElastase">Fecal elastase test result: *</label>
+    <input type="text" id="fecalElastase" name="fecalElastase" min="0" max="999" required placeholder="Example: 147" oninput="validateFecalElastase()">
+
+    <label for="takingEnzymes">Are you taking enzymes for EPI? *</label>
+	<label><input type="radio" name="takingEnzymes" value="Yes" required> Yes, I'm taking enzymes.</label>
+    <label><input type="radio" name="takingEnzymes" value="No" required> No, I'm not taking enzymes.</label><br>
+
+    <div id="enzymeDetails" style="display:none;">
+        <label for="enzymeType">Type of enzymes: *</label>
+        <select id="enzymeType" name="enzymeType" required>
+        <option value="Select">Select...</option>
+            <option value="Rx">Prescription enzymes only</option>
+            <option value="OTC">Over the counter enzymes only</option>
+            <option value="Both">A mix of both prescription and over the counter enzymes</option>
+            <option value="None">I don't take enzymes currently</option>
+        </select><br>
+
+        <label for="mealDose">What dose of enzymes are you typically taking for meals? *</label>
+        <input type="text" id="mealDose" name="mealDose" placeholder="Meal dose, e.g. 72000" required oninput="validateEnzymeDose('mealDose')">
+            
+        <label for="snackDose">What dose of enzymes are you typically taking for snacks? *</label>
+        <input type="text" id="snackDose" name="snackDose" placeholder="Snack dose, e.g. 36000" required oninput="validateEnzymeDose('snackDose')">
+
+         <p>Do you feel like you are taking the ideal amount of enzymes to manage your EPI-related symptoms? *</p>
+        <div class="radio-group">
+            <input type="radio" id="idealEnzymesYes" name="idealEnzymes" value="Yes" required>
+            <label for="idealEnzymesYes">Yes</label>
+        </div>
+        <div class="radio-group">
+            <input type="radio" id="idealEnzymesMostTime" name="idealEnzymes" value="MostTime" required>
+            <label for="idealEnzymesMostTime">Most of the time but not always</label>
+        </div>
+        <div class="radio-group">
+            <input type="radio" id="idealEnzymesNo" name="idealEnzymes" value="No" required>
+            <label for="idealEnzymesNo">No</label>
+        </div>
+    </div>
+    </div>
+
+<!-- Symptoms Tables Frequency/Severity -->
+    <div id="abdominalSymptomsSection"></div>
+    <div id="toiletRelatedSymptomsSection"></div>
+    <div id="foodRelatedSymptomsSection"></div>
+
+    <div class="research-consent">
+    <p>When you click the "Calculate My EPI/PEI-SS Score" button below, your score will be calculated and presented. There is also a checkbox. If you leave it checked, your anonymous data will be used in a future research study to help us understand how different health conditions influence the symptom burden associated with gastrointestinal conditions. You will be opting in to this. If you do not want your anonymous data from the survey to be used for research, uncheck this box and it will not be used.</p>
+
+    <label for="Research">
+        <input type="checkbox" id="Research" name="Research" value="yes" checked>
+        If you uncheck this box, your anonymized data will not be used for research.
+    </label>
+    <div id="conditionalText" style="color: grey; font-style: italic; display: none;">
+        Because you unchecked the box, we confirm your anonymous data will not be used for research.
+    </div>
+
+
+    </div>
+
+	<input type="submit" value="Calculate My EPI/PEI-SS Score">
+
+    
+    <div id="scoreDisplay" style="font-size:24px; margin:20px 0;"></div>
+    <div id="topSymptomsDisplay"></div>
+
+    <div id="qrcode"></div>
+    <div id="scoreDisplay2" style="font-size:14px; margin:20px 0;"></div>
+    <div id="scoreDisplay3" style="font-size:14px; margin:20px 0;"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script>
+                // Expose the uuidv4 function globally
+                const uuidv4 = uuid.v4;
+            </script>
+    <script src="script.js"></script>
+    </form>
+
+    <button id="pdfButton" onclick="printReport()" class="button-purple hidden">Save a PDF of your score and symptom information</button>
+    
+
+</body>
+</html>
