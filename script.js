@@ -18,6 +18,15 @@ function validateFecalElastase() {
     }
 }
 
+function showModal(modalId) {
+    document.getElementById(modalId + 'Modal').style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId + 'Modal').style.display = 'none';
+}
+
+
 function validateEnzymeDose(doseInputId) {
     const doseInput = document.getElementById(doseInputId);
     const doseValue = doseInput.value.trim();

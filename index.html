@@ -177,7 +177,46 @@
     </form>
 
     <button id="pdfButton" onclick="printReport()" class="button-purple hidden">Save a PDF of your score and symptom information</button>
+
+	<div class="footer">
+        <a href="#" onclick="showModal('about')">About this site</a> |
+        <a href="#" onclick="showModal('privacy')">Privacy</a>
+    </div>
     
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+                <span class="close" onclick="closeModal('about')">&times;</span>
+                <h3>About This Site</h3>
+                <p>This site was developed to be an informational resource. This is not medical advice; talk to your doctor for specific questions related to your personal, individual medical care. Use this information at your own risk.</p>
+
+                <p>The goal of this tool is to help you think about your symptoms in terms of frequency and severity, in order to facilitate shared decision making processes with you and your healthcare team.</p>
+
+                <h4>How This Site Works</h4>
+                <p>The tool asks you to indicate whether and how often you have any of 15 symptoms. It also asks you to indicate how often they occur, if you have them.</p>
+                
+                <p>Each individual symptom has a score between 0-15, which is calculated by multiplying the frequency (0-5) and severity (0-3).</p>
+                
+                <p>The total score is obtained by adding up all of the individual symptom scores, for a total possible score of 0-225.</p>
+                
+                <p>For more information about the EPI/PEI-SS, you may be interested in reading <a href="https://doi.org/10.31219/osf.io/qpktg" target="_blank">this research paper about the EPI/PEI-SSy</a>. </p>
+
+
+                <h4>Who Made This Site?</h4>
+                <p>Dana Lewis, a person living with EPI, made this site. She’s not a doctor. (She has published <a href="https://DIYPS.org/research" target="_blank">research papers about EPI</a>, though). She has no financial conflicts of interest or any ties to any pharmaceutical company.</p>
+
+                <h4>Questions? Feedback? Ideas?</h4>
+                <p>Questions? Feedback? Ideas to improve the site? Want to partner on a research study related to EPI? You can email Dana+EPI-PEI-SS@OpenAPS.org</p>
+            </div>
+        </div>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+                <span class="close" onclick="closeModal('privacy')">&times;</span>
+                <h3>Privacy</h3>
+                <p>This site does not identify nor attempt to track identifying information. The site does track general usage data such as button clicks and anonymized score data, for purposes of understanding how the site is being used. It does not collect nor track IP address or any other identifying information.</p>
+                <p>You can choose to opt in to sharing your symptom data for future research studies. If you uncheck the box, your data will not be used for research.</p>
+            </div>
+        </div>
 
 </body>
 </html>
