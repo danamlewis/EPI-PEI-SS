@@ -1,3 +1,5 @@
+import './style.css';
+
 // Define cutoff, sensitivity, and specificity, based on first paper, see: https://doi.org/10.31219/osf.io/qpktg
 const cutoff = 59;
 const sensitivity = 0.81; // 81%
