@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const takingEnzymesRadios = document.querySelectorAll('input[name="takingEnzymes"]');
     const form = document.getElementById('giSurveyForm');
     const submitButton = document.querySelector('input[type="submit"]');
+    let isFormSubmitted = false;
     const helperText = document.createElement('p');
     helperText.textContent = "You are missing some required fields, please review the form and fill out completely.";
     helperText.style.color = 'red';
@@ -405,6 +406,13 @@ document.addEventListener('DOMContentLoaded', function() {
             scoreDisplay3.innerHTML = additionalAdviceText;
         }
 
+                
+        // Mark the form as submitted
+        isFormSubmitted = true;
+
+        // Update the visibility after form submission
+        toggleVisibility();
+
         window.printReport = function() {
             const { jsPDF } = window.jspdf;
             
@@ -463,4 +471,31 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!researchCheckbox.checked) {
         conditionalText.style.display = 'block';
     }
+
+     // Function to detect if the user is on a mobile device
+        function isMobileDevice() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+          //  return true; // test as mobile device
+        }
+
+        // Elements
+        const pdfButton = document.getElementById('pdfButton');
+        const screenshotMessage = document.getElementById('screenshotMessage');
+    
+    // Function to toggle the visibility based on device type and form submission state
+        function toggleVisibility() {
+            if (isFormSubmitted) {
+                if (isMobileDevice()) {
+                    screenshotMessage.classList.remove('hidden');
+                    pdfButton.classList.add('hidden');
+                } else {
+                    pdfButton.classList.remove('hidden');
+                    screenshotMessage.classList.add('hidden');
+                }
+            } else {
+                pdfButton.classList.add('hidden');
+                screenshotMessage.classList.add('hidden');
+            }
+        }
+   
 });
