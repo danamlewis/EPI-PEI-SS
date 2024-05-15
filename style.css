@@ -266,47 +266,55 @@ input[type="checkbox"] {
     display: none; /* Hide the element */
 }
 
-@media (max-width: 600px) { /* Adjust the max-width as needed */
-  .symptom-frequency, .symptom-severity {
-    border: 0;
-  }
+@media (max-width: 600px) {
+    .symptom-frequency, .symptom-severity {
+        border: 0;
+    }
 
-  .symptom-frequency th, .symptom-severity th {
-    display: none;
-  }
+    .symptom-frequency th, .symptom-severity th {
+        display: none;
+    }
 
-  .symptom-frequency tr, .symptom-severity tr {
-    margin-bottom: 10px;
-    display: block;
-    border-bottom: 2px solid #eee;
-  }
+    .symptom-frequency tr, .symptom-severity tr {
+        margin-bottom: 10px;
+        display: block;
+        border-bottom: 2px solid #eee;
+    }
 
-  .symptom-frequency td, .symptom-severity td {
-    display: block;
-    text-align: right;
-    font-size: 0.8em;
-    border-bottom: 1px dotted #ccc;
-    position: relative;
-    padding-left: 50%;
-    padding-bottom: 16px; 
-  }
+    .symptom-frequency td, .symptom-severity td {
+        display: flex;
+        align-items: flex-start; /* Align items to the top */
+        text-align: left;
+        font-size: 0.8em;
+        border-bottom: 1px dotted #ccc;
+        padding: 8px 0; /* Adjust padding as needed */
+    }
 
-  .symptom-frequency td::before, .symptom-severity td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 10px;
-    width: 90%;
-    padding-left: 15px;
-    text-align: left;
-  }
+    .symptom-frequency td:first-child, .symptom-severity td:first-child {
+        width: 100%;
+    }
 
-  /* Align the input fields with the text */
-  .symptom-frequency td input, .symptom-severity td input {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateY(0%);
-    left: 0;
-  }
+    .symptom-frequency td:not(:first-child), .symptom-severity td:not(:first-child) {
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .symptom-frequency td label, .symptom-severity td label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .symptom-frequency td label input[type="radio"], .symptom-severity td label input[type="radio"] {
+        margin-right: 10px; /* Add space between radio button and text */
+    }
+}
+
+/* Hide the text next to the radio buttons on larger screens */
+@media (min-width: 601px) {
+    .symptom-frequency td label span, .symptom-severity td label span {
+        display: none;
+    }
 }
 
