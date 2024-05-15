@@ -69,7 +69,7 @@ function generateSymptomsSections(symptomType, symptomsArray) {
         frequencySectionHTML += `<tr><td>${symptom}</td>`; // Keep displaying the full symptom description
         for (let i = 0; i <= 5; i++) {
             frequencySectionHTML += `<td><label for="${abbrFreqName}_${i}"><input type="radio" id="${abbrFreqName}_${i}" name="${abbrFreqName}" value="${i}" ${i === 0 ? 'required' : ''}><span>${frequencyLabels[i]}</span></label></td>`;
-     //       frequencySectionHTML += `<td><input type="radio" name="${abbrFreqName}" value="${i}" ${i === 0 ? 'required' : ''}></td>`;
+     //      frequencySectionHTML += `<td><input type="radio" name="${abbrFreqName}" value="${i}" ${i === 0 ? 'required' : ''}></td>`;
              
          // use this one for testing so not required
           //   frequencySectionHTML += `<td><input type="radio" name="${abbrFreqName}" value="${i}" ${i === 0}></td>`;
