@@ -292,6 +292,7 @@ input[type="checkbox"] {
 
     .symptom-frequency td:first-child, .symptom-severity td:first-child {
         width: 100%;
+        font-weight: bold; 
     }
 
     .symptom-frequency td:not(:first-child), .symptom-severity td:not(:first-child) {
