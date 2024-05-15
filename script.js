@@ -55,6 +55,10 @@ function generateSymptomsSections(symptomType, symptomsArray) {
         "Food-related": ["F-F-Lrg", "F-F-Crtn", "F-F-Fat", "F-S-Lrg", "F-S-Crtn", "F-S-Fat"]
     };
 
+
+      let frequencyLabels = ["Never", "At least once, but not regularly", "Once a month", "Once a week", "A few times a week", "Most days of the week"];
+      let severityLabels = ["I don't have this symptom", "Slightly annoying", "Bothersome", "Very bothersome"];
+    
     let symptomTypeKey = symptomType;
 
     // Frequency section
@@ -64,7 +68,8 @@ function generateSymptomsSections(symptomType, symptomsArray) {
         const abbrFreqName = abbreviations[symptomTypeKey][index]; // Use abbreviation for frequency
         frequencySectionHTML += `<tr><td>${symptom}</td>`; // Keep displaying the full symptom description
         for (let i = 0; i <= 5; i++) {
-            frequencySectionHTML += `<td><input type="radio" name="${abbrFreqName}" value="${i}" ${i === 0 ? 'required' : ''}></td>`;
+            frequencySectionHTML += `<td><label for="${abbrFreqName}_${i}"><input type="radio" id="${abbrFreqName}_${i}" name="${abbrFreqName}" value="${i}" ${i === 0 ? 'required' : ''}><span>${frequencyLabels[i]}</span></label></td>`;
+     //       frequencySectionHTML += `<td><input type="radio" name="${abbrFreqName}" value="${i}" ${i === 0 ? 'required' : ''}></td>`;
              
          // use this one for testing so not required
           //   frequencySectionHTML += `<td><input type="radio" name="${abbrFreqName}" value="${i}" ${i === 0}></td>`;
@@ -83,7 +88,9 @@ function generateSymptomsSections(symptomType, symptomsArray) {
         const abbrSevName = abbreviations[symptomTypeKey][index + symptomsArray.length]; // Use abbreviation for severity
         severitySectionHTML += `<tr><td>${symptom}</td>`; // Keep displaying the full symptom description
         for (let i = 0; i <= 3; i++) {
-             severitySectionHTML += `<td><input type="radio" name="${abbrSevName}" value="${i}" ${i === 0 ? 'required' : ''}></td>`;
+             severitySectionHTML += `<td><label for="${abbrSevName}_${i}"><input type="radio" id="${abbrSevName}_${i}" name="${abbrSevName}" value="${i}" ${i === 0 ? 'required' : ''}><span>${severityLabels[i]}</span></label></td>`;
+
+            // severitySectionHTML += `<td><input type="radio" name="${abbrSevName}" value="${i}" ${i === 0 ? 'required' : ''}></td>`;
           
           // use this one for testing so not required
             //severitySectionHTML += `<td><input type="radio" name="${abbrSevName}" value="${i}" ${i === 0 }></td>`;
