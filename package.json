@@ -1,0 +1,13 @@
+{
+  "name": "my-github-pages-site",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0"
+  }
+}
