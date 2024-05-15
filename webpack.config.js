@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 
@@ -14,6 +15,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      minify: false, // Disable HTML minification if necessary
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
     }),
     new webpack.DefinePlugin({
       'process.env.SECRET_URL': JSON.stringify(process.env.SECRET_URL),
@@ -30,6 +35,10 @@ module.exports = {
             presets: ['@babel/preset-env'],
           },
         },
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
