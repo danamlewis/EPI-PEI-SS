@@ -7,18 +7,19 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.js', // Entry point for your application
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js', // Name of the output bundle
+    path: path.resolve(__dirname, 'dist'), // Output directory
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/index.html', // Template file
+      filename: 'index.html', // Output filename in the dist directory
       minify: false, // Disable HTML minification if necessary
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: 'style.css', // Output CSS filename
     }),
     new webpack.DefinePlugin({
       'process.env.SECRET_URL': JSON.stringify(process.env.SECRET_URL),
@@ -27,7 +28,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js$/, // Rule for JavaScript files
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -37,7 +38,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.css$/, // Rule for CSS files
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
