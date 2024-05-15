@@ -1,0 +1,321 @@
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 10px;
+}
+
+h1, h2, h3 {
+    color: #4B0082;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.footer {
+    color: #5f00b3;
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Existing styles for conditions */
+.conditions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    /* Add a background color to the even children */
+    background-color: #ffffff; /* base color */
+}
+
+/* New style for zebra striping on condition labels */
+.conditions label:nth-child(odd) {
+    background-color: #EDE9F2; /* light purple color */
+    padding: 8px; /* Add some padding to give space around the text and checkbox */
+    border-radius: 4px; /* Optional: adds rounded corners */
+}
+
+.conditions label:nth-child(even) {
+    background-color: #DDD6EC; /* slightly darker shade of purple */
+    padding: 8px; /* Add some padding to give space around the text and checkbox */
+    border-radius: 4px; /* Optional: adds rounded corners */
+
+}
+
+/* Adjust label styles to improve layout */
+.conditions label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Adjust spacing between checkboxes */
+}
+
+/* Ensure the input checkbox aligns nicely with the label text */
+.conditions input[type="checkbox"] {
+    margin-right: 10px; /* Space between checkbox and label text */
+}
+
+/* Add this to your style.css */
+#otherConditions {
+  display: block;
+  width: 100%; /* or the width of your checkboxes */
+  padding: 0.5em; /* Or as desired */
+  margin-top: 0.5em; /* Or as desired */
+  border: 1px solid #ccc; /* Or as desired */
+  background-color: #f8f8f8; /* Light gray background, change as desired */
+}
+
+
+form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.radio-group label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="text"], input[type="email"], select, textarea {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+select {
+    width: auto;
+    max-width: 100%;
+}
+
+#scoreDisplay {
+    font-size: 24px;
+    margin: 20px auto;
+    color: #4B0082; /* Purple */
+    font-weight: bold;
+    text-align: center; /* Centers the text inside the element */
+}
+
+.symptom-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.symptom-label {
+    width: 70%; /* Adjust based on your layout */
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.symptom-bar {
+    background-color: #E6E6FA;
+    height: 20px;
+    width: 30%;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.score-dot {
+    position: absolute;
+    top: -5px; /* Adjust to center vertically */
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #4B0082;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+
+
+input[type="submit"] {
+    background-color: #4B0082;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: block; /* Make the button a block element */
+    margin: 20px auto; /* Auto margin on left and right */
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #5c4a9e;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.symptom-frequency, .symptom-severity {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.symptom-frequency th, .symptom-severity th {
+    background-color: #CBC3E3;
+    padding: 12px;
+}
+
+.symptom-frequency td, .symptom-severity td {
+    text-align: center;
+    padding: 12px;
+}
+
+.symptom-frequency td:first-child, .symptom-severity td:first-child {
+    text-align: left;
+    padding-left: 24px;
+}
+
+.symptom-frequency tr:nth-child(even), .symptom-severity tr:nth-child(even) {
+    background-color: #EDE9F2;
+}
+
+#qrcode {
+    display: flex;
+    float: right;
+    margin: 20px 20px 20px 20px; /* Adjust margins as needed */
+}
+
+
+.button-purple {
+    background-color: #4B0082; /* Purple background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding inside the button */
+    border-radius: 4px; /* Rounded corners */
+    display: block; /* Make the button a block element */
+    margin: 20px auto; /* Auto margin on left and right */
+    cursor: pointer; /* Mouse pointer on hover */
+    font-size: 1em; /* Text size */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+}
+
+.button-purple:hover {
+    background-color: #5c4a9e; /* Slightly lighter purple on hover */
+}
+
+.hidden {
+    display: none; /* Hide the element */
+}
+
+@media (max-width: 600px) {
+    .symptom-frequency, .symptom-severity {
+        border: 0;
+    }
+
+    .symptom-frequency th, .symptom-severity th {
+        display: none;
+    }
+
+    .symptom-frequency tr, .symptom-severity tr {
+        margin-bottom: 10px;
+        display: block;
+        border-bottom: 2px solid #eee;
+    }
+
+    .symptom-frequency td, .symptom-severity td {
+        display: flex;
+        align-items: flex-start; /* Align items to the top */
+        text-align: left;
+        font-size: 0.8em;
+        border-bottom: 1px dotted #ccc;
+        padding: 8px 0; /* Adjust padding as needed */
+    }
+
+    .symptom-frequency td:first-child, .symptom-severity td:first-child {
+        width: 100%;
+        font-weight: bold; 
+    }
+
+    .symptom-frequency td:not(:first-child), .symptom-severity td:not(:first-child) {
+        width: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .symptom-frequency td label, .symptom-severity td label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .symptom-frequency td label input[type="radio"], .symptom-severity td label input[type="radio"] {
+        margin-right: 10px; /* Add space between radio button and text */
+    }
+}
+
+/* Hide the text next to the radio buttons on larger screens */
+@media (min-width: 601px) {
+    .symptom-frequency td label span, .symptom-severity td label span {
+        display: none;
+    }
+}
+
+
