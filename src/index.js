@@ -270,6 +270,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Manually check the state of the Research checkbox
+        const researchConsent = document.getElementById('Research').checked ? 'Yes' : 'No';
+        data.researchConsent = researchConsent;
+        
         // Now, add the totalScore to the data object
         data.totalScore = totalScore;
 
