@@ -22,7 +22,7 @@ module.exports = {
       filename: 'style.css', // Output CSS filename
     }),
     new webpack.DefinePlugin({
-      'process.env.SECRET_URL': JSON.stringify(process.env.SECRET_URL),
+      'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
     }),
   ],
   module: {
