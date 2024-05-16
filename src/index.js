@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 uuid: uuidv4()
             });
         
-         fetch(SERVER_URL, {
+         fetch(process.env.SERVER_URL, {
                          method: 'POST',
                headers: {
                    'Content-Type': 'application/json'
