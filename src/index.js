@@ -28,8 +28,10 @@ function closeModal(modalId) {
     document.getElementById(modalId + 'Modal').style.display = 'none';
 }
 
-// Attach the function to the window object to make it globally accessible
+// Attach the functions to the window object to make it globally accessible
 window.validateFecalElastase = validateFecalElastase;
+window.showModal = showModal;
+window.closeModal = closeModal;
 
 function validateEnzymeDose(doseInputId) {
     const doseInput = document.getElementById(doseInputId);
