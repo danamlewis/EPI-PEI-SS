@@ -23,7 +23,7 @@ jobs:
 
       - name: Build project
         env:
-          SECRET_URL: ${{ secrets.SECRET_URL }}
+          SERVER_URL: ${{ secrets.SERVER_URL }}
         run: npm run build
 
       - name: Deploy to GitHub Pages
