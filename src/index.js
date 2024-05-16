@@ -5,6 +5,13 @@ const cutoff = 59;
 const sensitivity = 0.81; // 81%
 const specificity = 0.75; // 75%
 
+// Check if userUUID exists in sessionStorage, if not, create a new one
+let userUUID = sessionStorage.getItem('userUUID');
+if (!userUUID) {
+    userUUID = uuidv4();
+    sessionStorage.setItem('userUUID', userUUID);
+}
+
 // Code to validate the form inputs
 function validateFecalElastase() {
     const fecalElastaseInput = document.getElementById('fecalElastase');
@@ -368,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 idealEnzymes: formData.get('idealEnzymes') || '',
                 totalScore: totalScore,
                 symptomScores: symptomScores,
-                uuid: uuidv4()
+                uuid: userUUID
             });
         
          fetch(process.env.SERVER_URL, {
