@@ -28,6 +28,8 @@ function closeModal(modalId) {
     document.getElementById(modalId + 'Modal').style.display = 'none';
 }
 
+// Attach the function to the window object to make it globally accessible
+window.validateFecalElastase = validateFecalElastase;
 
 function validateEnzymeDose(doseInputId) {
     const doseInput = document.getElementById(doseInputId);
@@ -42,6 +44,9 @@ function validateEnzymeDose(doseInputId) {
         }
     }
 }
+
+// Attach the function to the window object to make it globally accessible
+window.validateEnzymeDose = validateEnzymeDose;
 
 // Code that matches the symptom names with the shortened symptom abbreviations and generates the tables for the symptoms frequency and severity
 const symptoms = {
