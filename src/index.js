@@ -248,6 +248,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return; // Skip this iteration
             }
 
+         // Skip keys that will be added later for symptom data
+            if (key.includes('-F-') || key.includes('-S-')) {
+                return;
+            }
+            
             if (Reflect.has(data, key)) {
                 if (!Array.isArray(data[key])) {
                     data[key] = [data[key]];
@@ -260,7 +265,122 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Now, add the totalScore to the data object
         data.totalScore = totalScore;
-        data.symptomScores = symptomScores;
+
+        const abbreviationMapping = {
+            "Abdominal pain after you eat": {
+                frequency: "A-F-Pain",
+                severity: "A-S-Pain"
+            },
+            "Bloating/distension of your stomach": {
+                frequency: "A-F-Bloat",
+                severity: "A-S-Bloat"
+            },
+            "Excessive gas": {
+                frequency: "A-F-EGas",
+                severity: "A-S-EGas"
+            },
+            "Trapped gas": {
+                frequency: "A-F-TGas",
+                severity: "A-S-TGas"
+            },
+            "Nausea": {
+                frequency: "A-F-Naus",
+                severity: "A-S-Naus"
+            },
+            "Feeling very full for hours after you eat": {
+                frequency: "A-F-Full",
+                severity: "A-S-Full"
+            },
+            "Messy smelly stools that stick to the side of the toilet bowl": {
+                frequency: "T-F-Smell",
+                severity: "T-S-Smell"
+            },
+            "Diarrhea": {
+                frequency: "T-F-Dia",
+                severity: "T-S-Dia"
+            },
+            "Constipation": {
+                frequency: "T-F-Const",
+                severity: "T-S-Const"
+            },
+            "Urgent bowel movement (rush to the toilet)": {
+                frequency: "T-F-Urg",
+                severity: "T-S-Urg"
+            },
+            "See fat or oil in stool or on toilet paper": {
+                frequency: "T-F-Fat",
+                severity: "T-S-Fat"
+            },
+            "4 or more bowel movements per day": {
+                frequency: "T-F-4BM",
+                severity: "T-S-4BM"
+            },
+            "I avoid eating large meals": {
+                frequency: "F-F-Lrg",
+                severity: "F-S-Lrg"
+            },
+            "I avoid certain foods or food groups (excluding food allergies or celiac)": {
+                frequency: "F-F-Crtn",
+                severity: "F-S-Crtn"
+            },
+            "I avoid fatty foods": {
+                frequency: "F-F-Fat",
+                severity: "F-S-Fat"
+            }
+        };
+
+        
+        // Add symptom frequency, severity, and total scores to the data object
+        symptomScores.forEach(symptom => {
+            const abbreviation = abbreviationMapping[symptom.name];
+            if (abbreviation) {
+                data[`${abbreviation.frequency}_Frequency`] = symptom.frequency;
+                data[`${abbreviation.severity}_Severity`] = symptom.severity;
+                data[`${abbreviation.frequency}_Total_Score`] = symptom.score;
+            }
+        });
+        
+//        // Create a data object, handling multiple values with the same name
+        Object.assign(data, {
+                timestamp: new Date().toISOString(),
+                geo: formData.get('geo'),
+                age: formData.get('age'),
+                gender: formData.get('gender'),
+                conditions: formData.getAll('condition[]'),
+                epiDiagnosis: epiDiagnosis,
+                epiDuration: formData.get('epiDuration') || '',
+                fecalElastase: formData.get('fecalElastase') || '',
+                takingEnzymes: takingEnzymes,
+                enzymeType: formData.get('enzymeType') || '',
+                mealDose: formData.get('mealDose') || '',
+                snackDose: formData.get('snackDose') || '',
+                idealEnzymes: formData.get('idealEnzymes') || '',
+                totalScore: totalScore,
+                symptomScores: symptomScores,
+                uuid: uuidv4()
+            });
+        
+         fetch(SERVER_URL, {
+                         method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify(data)
+           }).then(response => {
+               if (response.ok) {
+                   return response.json();
+               }
+               throw new Error('Network response was not ok.');
+           }).then(data => {
+               console.log('Form data successfully submitted:', data);
+               
+               displaySymptomScores(symptomScores);
+               displayAdviceText(totalScore);
+           }).catch(error => {
+               console.error('There was a problem with the fetch operation:', error);
+           });
+
+        
 
 //        // Get the current date and format it as MM-DD-YY
 //        const cDate = new Date();
@@ -317,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 totalScore += score;
 
                 // Store individual symptom scores with their full names for later
-                symptomScores.push({ name: detail.name, score });
+                symptomScores.push({ name: detail.name, frequency, severity, score });
             });
 
             // Sort symptomScores in descending order based on score
