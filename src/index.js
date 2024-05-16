@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //        // Convert form data to a JSON string
 //        const dataString = JSON.stringify(data);
 //        const encodedData = encodeURIComponent(dataString);
-//        const localURL = `file:///Users/danamichellelewis/Dropbox/Mac%20(2)/Desktop/QR%20code%20test/index2.html?data=${encodedData}`;
+//        const localURL = `URL`;
 //        console.log('Data String:', dataString); // Debugging line
 //        console.log('QR Code URL:', localURL); // Debugging line to see the full QR code URL
 //
