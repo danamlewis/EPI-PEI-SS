@@ -1,6 +1,6 @@
 import './style.css';
 
-// Define cutoff, sensitivity, and specificity, based on first paper, see: https://doi.org/10.31219/osf.io/qpktg
+// Define cutoff, sensitivity, and specificity, based on first paper, see: https://doi.org/10.3390/epidemiologia6030048
 const cutoff = 59;
 const sensitivity = 0.81; // 81%
 const specificity = 0.75; // 75%
@@ -527,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let adviceText = `<p><strong>What does the EPI/PEI-SS Total Score mean?</strong></p><p>Your total score (${totalScore}) is based on how you reported the burden of severity and frequency of each symptom. There are 15 symptoms, each with a possible score of up to 15, which adds up to a total score possible of 225.</p>
             <p><strong>Has the EPI/PEI-SS been validated?</strong></p>
-            <p>EPI/PEI-SS is in the process of being validated as a screening tool. To date, <a href="https://doi.org/10.31219/osf.io/qpktg" target="_blank">one study</a>  has been done in a real-world population with people already diagnosed with EPI. In people already diagnosed with EPI and already taking treatment for EPI (which is called pancreatic enzyme replacement therapy, PERT), the average EPI/PEI-SS total score was around 98. In contrast, in the group without a diagnosis of EPI, the average EPI/PEI-SS total score was around 38.</p>
+            <p>EPI/PEI-SS is in the process of being validated as a screening tool. To date, <a href="https://doi.org/10.3390/epidemiologia6030048" target="_blank">one study</a> has been done in a real-world population with people already diagnosed with EPI. In people already diagnosed with EPI and already taking treatment for EPI (which is called pancreatic enzyme replacement therapy, PERT), the average EPI/PEI-SS total score was around 98. In contrast, in the group without a diagnosis of EPI, the average EPI/PEI-SS total score was around 38.</p>
             <p>If we use a cutoff score of ${cutoff} – meaning if your score is ${cutoff} or higher – this suggests that ${sensitivity * 100} of 100 people with scores greater than or equal to ${cutoff} will likely have EPI. This concept is called sensitivity. In contrast, estimates for specificity suggest that ${specificity * 100} of 100 people who do not have EPI will correctly be identified as likely not having it.</p>
             <p><strong>What should I do with my EPI/PEI-SS score?</strong></p>
             <p><strong>TLDR:</strong> Your EPI/PEI-SS total score is ${totalScore}, which is ${statusText} the cutoff of ${cutoff}. This means that `;
